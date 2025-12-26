@@ -1,0 +1,10 @@
+services:
+  script:
+    build:
+      context: .
+      dockerfile: Dockerfile.compose-example
+    image: python_script_image
+    container_name: c1
+  redis:
+    image: redis:alpine
+    container_name: c2

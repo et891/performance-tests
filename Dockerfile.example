@@ -1,0 +1,5 @@
+FROM python:3.11
+WORKDIR /performance-tests
+COPY . .
+RUN pip install -r re.txt
+CMD ["python", "docker_example.py"]
