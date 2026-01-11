@@ -10,7 +10,7 @@ def build_gateway_grpc_client() -> Channel:
 
     :return: gRPC-канал (Channel), настроенный на адрес localhost:9003.
     """
-    return insecure_channel("95.163.222.49:9003")
+    return insecure_channel("193.227.241.112:9003")
 
 
 def build_gateway_locust_grpc_client(environment: Environment) -> Channel:
@@ -26,7 +26,7 @@ def build_gateway_locust_grpc_client(environment: Environment) -> Channel:
     locust_interceptor = LocustInterceptor(environment=environment)
 
     # Создаём обычный канал
-    channel = insecure_channel("95.163.222.49:9003")
+    channel = insecure_channel("193.227.241.112:9003")
 
     # Оборачиваем канал интерцептором, чтобы все запросы проходили через него
     return intercept_channel(channel, locust_interceptor)

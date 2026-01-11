@@ -1,0 +1,13 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Reports / artifacts
+*.html
+allure-results/
+allure-report/
+
+# OS
+.DS_Store
+Thumbs.db

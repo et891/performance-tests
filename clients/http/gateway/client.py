@@ -15,7 +15,7 @@ def build_gateway_http_client() -> Client:
 
     :return: Готовый к использованию объект httpx.Client.
     """
-    return Client(timeout=100, base_url="http://95.163.222.49:8003")
+    return Client(timeout=100, base_url="http://193.227.241.112:8003")
 
 
 def build_gateway_locust_http_client(environment: Environment) -> Client:
@@ -39,7 +39,7 @@ def build_gateway_locust_http_client(environment: Environment) -> Client:
 
     return Client(
         timeout=100,
-        base_url="http://95.163.222.49:8003",
+        base_url="http://193.227.241.112:8003",
         event_hooks={
             "request": [locust_request_event_hook],  # Отмечаем время начала запроса
             "response": [locust_response_event_hook(environment)]  # Собираем метрики и передаём их в Locust
