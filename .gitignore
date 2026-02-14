@@ -1,13 +1,15 @@
-# Python
-.venv/
-__pycache__/
-*.pyc
+# pycharm
+.idea
 
-# Reports / artifacts
-*.html
-allure-results/
-allure-report/
+# python
+.venv
+__pycache__
 
-# OS
+# locust
+dumps
+locust_*.csv
+locust_*.json
+report.html
+
+# Mac OS
 .DS_Store
-Thumbs.db

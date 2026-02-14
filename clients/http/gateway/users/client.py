@@ -11,6 +11,7 @@ from clients.http.gateway.users.schema import (
     CreateUserRequestSchema,
     CreateUserResponseSchema
 )
+from tools.routes import APIRoutes
 
 
 # Старые модели с использованием TypedDict были удалены
@@ -27,9 +28,11 @@ class UsersGatewayHTTPClient(HTTPClient):
         :param user_id: Идентификатор пользователя.
         :return: Ответ от сервера (объект httpx.Response).
         """
-        return self.get(f"/api/v1/users/{user_id}",
-                        extensions=HTTPClientExtensions(route="/api/v1/users/{user_id}")
-                        )
+        # Вместо /api/v1/users используем APIRoutes.USERS
+        return self.get(
+            f"{APIRoutes.USERS}/{user_id}",
+            extensions=HTTPClientExtensions(route=f"{APIRoutes.USERS}/{{user_id}}")
+        )
 
     # Теперь используем pydantic-модель для аннотации
     def create_user_api(self, request: CreateUserRequestSchema) -> Response:
@@ -40,7 +43,8 @@ class UsersGatewayHTTPClient(HTTPClient):
         :return: Ответ от сервера (объект httpx.Response).
         """
         # Сериализуем модель в словарь с использованием alias
-        return self.post("/api/v1/users", json=request.model_dump(by_alias=True))
+        # Вместо /api/v1/users используем APIRoutes.USERS
+        return self.post(APIRoutes.USERS, json=request.model_dump(by_alias=True))
 
     def get_user(self, user_id: str) -> GetUserResponseSchema:
         response = self.get_user_api(user_id)
